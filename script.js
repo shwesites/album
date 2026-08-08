@@ -8,7 +8,7 @@ const LOCKOUT_DURATION = 24 * 60 * 60 * 1000; // 24 hours
 const imageList = [];
 for (let i = 1; i <= 50; i++) {
   imageList.push({
-    src: `photos/${i}.jpeg`,
+    src: `photos/${i}.jpg`,
     caption: `Photo ${i}`
   });
 }
