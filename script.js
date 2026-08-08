@@ -1,20 +1,17 @@
 // ============================================================
-// CONFIGURATION: Add your bulk images and subfolders here
+// CONFIGURATION & AUTOMATED IMAGE GENERATION
 // ============================================================
 const CORRECT_PIN = "123";
 const LOCKOUT_DURATION = 24 * 60 * 60 * 1000; // 24 hours
 
-// List your images here (you can include subfolders like "photos/vacation/1.jpeg")
-const imageList = [
-  { src: "photos/1.jpeg", caption: "Beautiful Moment" },
-  { src: "photos/2.jpeg", caption: "Happy Memories" },
-  { src: "photos/3.jpeg", caption: "A Special Day" },
-  { src: "photos/4.jpeg", caption: "Wonderful Places" },
-  { src: "photos/5.jpeg", caption: "Good Times" },
-  { src: "photos/6.jpeg", caption: "Forever Remembered" }
-  // Add as many bulk images or subfolder paths as you want here:
-  // { src: "photos/subfolder/image7.jpeg", caption: "Trip Photo" }
-];
+// Automatically generate numbers from 1 to 50
+const imageList = [];
+for (let i = 1; i <= 50; i++) {
+  imageList.push({
+    src: `photos/${i}.jpeg`,
+    caption: `Photo ${i}`
+  });
+}
 
 // ------------------------------------------------------------
 // Dynamic Gallery Builder
