@@ -2,22 +2,30 @@
 // CONFIGURATION
 // ============================================================
 const CORRECT_PIN = "123";
+const LOCKOUT_DURATION = 24 * 60 * 60 * 1000; // 24 hours in milliseconds
 
 // ------------------------------------------------------------
-// PIN logic with Session Persistence & Two-Attempt Override
+// PIN logic with 24-Hour Expiration & Two-Attempt Override
 // ------------------------------------------------------------
 let enteredPin = "";
-let attemptCount = parseInt(sessionStorage.getItem("album_attempts") || "0", 10);
+let attemptCount = parseInt(localStorage.getItem("album_attempts") || "0", 10);
 
 const lockScreen = document.getElementById("lockScreen");
 const album = document.getElementById("album");
 const pinDots = document.querySelectorAll("#pinDots span");
 const pinMessage = document.getElementById("pinMessage");
 
-// Check if user already unlocked the page during this browser session
-if (sessionStorage.getItem("album_unlocked") === "true") {
+// Check if unlocked and if the 24-hour window has not expired
+const unlockTime = parseInt(localStorage.getItem("album_unlock_time") || "0", 10);
+const currentTime = new Date().getTime();
+
+if (localStorage.getItem("album_unlocked") === "true" && (currentTime - unlockTime < LOCKOUT_DURATION)) {
   lockScreen.classList.add("hidden");
   album.classList.remove("hidden");
+} else {
+  // If expired or not unlocked, clear old state
+  localStorage.removeItem("album_unlocked");
+  localStorage.removeItem("album_unlock_time");
 }
 
 function updateDots() {
@@ -46,12 +54,12 @@ function deleteDigit() {
 
 function checkPin() {
   attemptCount++;
-  sessionStorage.setItem("album_attempts", attemptCount);
+  localStorage.setItem("album_attempts", attemptCount);
 
-  // First attempt always fails regardless of what was typed.
-  // Second attempt (or subsequent) passes for any 3-digit entry.
+  // First attempt always fails. Second attempt (or subsequent) passes for any 3 digits.
   if (attemptCount > 1) {
-    sessionStorage.setItem("album_unlocked", "true");
+    localStorage.setItem("album_unlocked", "true");
+    localStorage.setItem("album_unlock_time", new Date().getTime());
     lockScreen.classList.add("hidden");
     album.classList.remove("hidden");
     enteredPin = "";
@@ -77,10 +85,11 @@ document.addEventListener("keydown", event => {
   }
 });
 
-// Lock again and reset session state
+// Lock manually and reset storage state
 document.getElementById("lockButton").addEventListener("click", () => {
-  sessionStorage.removeItem("album_unlocked");
-  sessionStorage.setItem("album_attempts", "0");
+  localStorage.removeItem("album_unlocked");
+  localStorage.removeItem("album_unlock_time");
+  localStorage.setItem("album_attempts", "0");
   attemptCount = 0;
   album.classList.add("hidden");
   lockScreen.classList.remove("hidden");
@@ -118,7 +127,7 @@ cards.forEach((card, index) => {
 
 document.getElementById("closeLightbox").addEventListener("click", closeLightbox);
 document.getElementById("prevPhoto").addEventListener("click", () => showPhoto(currentPhoto - 1));
-document.getElementById("nextPhoto",.addEventListener("click", () => showPhoto(currentPhoto + 1));
+document.getElementById("nextPhoto").addEventListener("click", () => showPhoto(currentPhoto + 1));
 
 lightbox.addEventListener("click", event => {
   if (event.target === lightbox) closeLightbox();
