@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#111827">
+  <title>My Photo Album</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- PIN SCREEN -->
+  <section id="lockScreen" class="lock-screen">
+    <div class="lock-card">
+      <div class="lock-icon">🔒</div>
+      <h1>Private Album</h1>
+      <p>Enter the 3-digit PIN to continue.</p>
+
+      <div id="pinDots" class="pin-dots" aria-label="PIN entry">
+        <span></span><span></span><span></span>
+      </div>
+
+      <div class="keypad">
+        <button data-key="1">1</button>
+        <button data-key="2">2</button>
+        <button data-key="3">3</button>
+        <button data-key="4">4</button>
+        <button data-key="5">5</button>
+        <button data-key="6">6</button>
+        <button data-key="7">7</button>
+        <button data-key="8">8</button>
+        <button data-key="9">9</button>
+        <button class="empty" aria-hidden="true"></button>
+        <button data-key="0">0</button>
+        <button id="backspace" aria-label="Delete">⌫</button>
+      </div>
+
+      <div id="pinMessage" class="pin-message"></div>
+    </div>
+  </section>
+
+  <!-- ALBUM -->
+  <main id="album" class="album hidden">
+    <header class="hero">
+      <div>
+        <p class="eyebrow">PRIVATE PHOTO ALBUM</p>
+        <h1>Beautiful Memories</h1>
+        <p class="subtitle">A collection of moments worth remembering.</p>
+      </div>
+      <button id="lockButton" class="lock-button">🔒 Lock</button>
+    </header>
+
+    <section class="gallery" id="gallery">
+      <!-- Replace these image paths with your own photos.
+           Put your images inside the "photos" folder. -->
+      <figure class="photo-card">
+        <img src="photos/photo1.jpg" alt="Album photo 1" loading="lazy">
+        <figcaption>Beautiful Moment</figcaption>
+      </figure>
+      <figure class="photo-card">
+        <img src="photos/photo2.jpg" alt="Album photo 2" loading="lazy">
+        <figcaption>Happy Memories</figcaption>
+      </figure>
+      <figure class="photo-card">
+        <img src="photos/photo3.jpg" alt="Album photo 3" loading="lazy">
+        <figcaption>A Special Day</figcaption>
+      </figure>
+      <figure class="photo-card">
+        <img src="photos/photo4.jpg" alt="Album photo 4" loading="lazy">
+        <figcaption>Wonderful Places</figcaption>
+      </figure>
+      <figure class="photo-card">
+        <img src="photos/photo5.jpg" alt="Album photo 5" loading="lazy">
+        <figcaption>Good Times</figcaption>
+      </figure>
+      <figure class="photo-card">
+        <img src="photos/photo6.jpg" alt="Album photo 6" loading="lazy">
+        <figcaption>Forever Remembered</figcaption>
+      </figure>
+    </section>
+
+    <footer>
+      <p>© <span id="year"></span> My Photo Album</p>
+    </footer>
+  </main>
+
+  <!-- LIGHTBOX -->
+  <div id="lightbox" class="lightbox hidden" role="dialog" aria-modal="true">
+    <button id="closeLightbox" class="close-lightbox" aria-label="Close">×</button>
+    <button id="prevPhoto" class="nav prev" aria-label="Previous">‹</button>
+    <div class="lightbox-content">
+      <img id="lightboxImage" src="" alt="">
+      <p id="lightboxCaption"></p>
+    </div>
+    <button id="nextPhoto" class="nav next" aria-label="Next">›</button>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
