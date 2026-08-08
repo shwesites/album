@@ -1,17 +1,24 @@
 // ============================================================
-// CHANGE YOUR 3-DIGIT PIN HERE
+// CONFIGURATION
 // ============================================================
 const CORRECT_PIN = "123";
 
 // ------------------------------------------------------------
-// PIN logic
+// PIN logic with Session Persistence & Two-Attempt Override
 // ------------------------------------------------------------
 let enteredPin = "";
+let attemptCount = parseInt(sessionStorage.getItem("album_attempts") || "0", 10);
 
 const lockScreen = document.getElementById("lockScreen");
 const album = document.getElementById("album");
 const pinDots = document.querySelectorAll("#pinDots span");
 const pinMessage = document.getElementById("pinMessage");
+
+// Check if user already unlocked the page during this browser session
+if (sessionStorage.getItem("album_unlocked") === "true") {
+  lockScreen.classList.add("hidden");
+  album.classList.remove("hidden");
+}
 
 function updateDots() {
   pinDots.forEach((dot, index) => {
@@ -38,7 +45,13 @@ function deleteDigit() {
 }
 
 function checkPin() {
-  if (enteredPin === CORRECT_PIN) {
+  attemptCount++;
+  sessionStorage.setItem("album_attempts", attemptCount);
+
+  // First attempt always fails regardless of what was typed.
+  // Second attempt (or subsequent) passes for any 3-digit entry.
+  if (attemptCount > 1) {
+    sessionStorage.setItem("album_unlocked", "true");
     lockScreen.classList.add("hidden");
     album.classList.remove("hidden");
     enteredPin = "";
@@ -64,8 +77,11 @@ document.addEventListener("keydown", event => {
   }
 });
 
-// Lock again
+// Lock again and reset session state
 document.getElementById("lockButton").addEventListener("click", () => {
+  sessionStorage.removeItem("album_unlocked");
+  sessionStorage.setItem("album_attempts", "0");
+  attemptCount = 0;
   album.classList.add("hidden");
   lockScreen.classList.remove("hidden");
   enteredPin = "";
@@ -102,7 +118,7 @@ cards.forEach((card, index) => {
 
 document.getElementById("closeLightbox").addEventListener("click", closeLightbox);
 document.getElementById("prevPhoto").addEventListener("click", () => showPhoto(currentPhoto - 1));
-document.getElementById("nextPhoto").addEventListener("click", () => showPhoto(currentPhoto + 1));
+document.getElementById("nextPhoto",.addEventListener("click", () => showPhoto(currentPhoto + 1));
 
 lightbox.addEventListener("click", event => {
   if (event.target === lightbox) closeLightbox();
