@@ -1,8 +1,35 @@
 // ============================================================
-// CONFIGURATION
+// CONFIGURATION: Add your bulk images and subfolders here
 // ============================================================
 const CORRECT_PIN = "123";
-const LOCKOUT_DURATION = 24 * 60 * 60 * 1000; // 24 hours in milliseconds
+const LOCKOUT_DURATION = 24 * 60 * 60 * 1000; // 24 hours
+
+// List your images here (you can include subfolders like "photos/vacation/1.jpeg")
+const imageList = [
+  { src: "photos/1.jpeg", caption: "Beautiful Moment" },
+  { src: "photos/2.jpeg", caption: "Happy Memories" },
+  { src: "photos/3.jpeg", caption: "A Special Day" },
+  { src: "photos/4.jpeg", caption: "Wonderful Places" },
+  { src: "photos/5.jpeg", caption: "Good Times" },
+  { src: "photos/6.jpeg", caption: "Forever Remembered" }
+  // Add as many bulk images or subfolder paths as you want here:
+  // { src: "photos/subfolder/image7.jpeg", caption: "Trip Photo" }
+];
+
+// ------------------------------------------------------------
+// Dynamic Gallery Builder
+// ------------------------------------------------------------
+const gallerySection = document.getElementById("gallery");
+
+imageList.forEach((item, index) => {
+  const figure = document.createElement("figure");
+  figure.className = "photo-card";
+  figure.innerHTML = `
+    <img src="${item.src}" alt="Album photo ${index + 1}" loading="lazy">
+    <figcaption>${item.caption}</figcaption>
+  `;
+  gallerySection.appendChild(figure);
+});
 
 // ------------------------------------------------------------
 // PIN logic with 24-Hour Expiration & Two-Attempt Override
@@ -15,7 +42,6 @@ const album = document.getElementById("album");
 const pinDots = document.querySelectorAll("#pinDots span");
 const pinMessage = document.getElementById("pinMessage");
 
-// Check if unlocked and if the 24-hour window has not expired
 const unlockTime = parseInt(localStorage.getItem("album_unlock_time") || "0", 10);
 const currentTime = new Date().getTime();
 
@@ -23,7 +49,6 @@ if (localStorage.getItem("album_unlocked") === "true" && (currentTime - unlockTi
   lockScreen.classList.add("hidden");
   album.classList.remove("hidden");
 } else {
-  // If expired or not unlocked, clear old state
   localStorage.removeItem("album_unlocked");
   localStorage.removeItem("album_unlock_time");
 }
@@ -56,7 +81,6 @@ function checkPin() {
   attemptCount++;
   localStorage.setItem("album_attempts", attemptCount);
 
-  // First attempt always fails. Second attempt (or subsequent) passes for any 3 digits.
   if (attemptCount > 1) {
     localStorage.setItem("album_unlocked", "true");
     localStorage.setItem("album_unlock_time", new Date().getTime());
@@ -85,7 +109,6 @@ document.addEventListener("keydown", event => {
   }
 });
 
-// Lock manually and reset storage state
 document.getElementById("lockButton").addEventListener("click", () => {
   localStorage.removeItem("album_unlocked");
   localStorage.removeItem("album_unlock_time");
@@ -98,7 +121,7 @@ document.getElementById("lockButton").addEventListener("click", () => {
 });
 
 // ------------------------------------------------------------
-// Photo lightbox
+// Photo lightbox & Navigation
 // ------------------------------------------------------------
 const cards = Array.from(document.querySelectorAll(".photo-card"));
 const lightbox = document.getElementById("lightbox");
