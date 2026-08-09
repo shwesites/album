@@ -16,7 +16,7 @@ const imageList = [
   { src: "photos/7.jpg", caption: "Main Folder Photo 2" },
   { src: "photos/8.jpg", caption: "Main Folder Photo 2" },
   { src: "photos/9.jpg", caption: "Main Folder Photo 2" },
-  { src: "photos/10.jpg", caption: "Main Folder Photo 2" }
+  { src: "photos/10.jpg", caption: "Main Folder Photo 2" },
   
   
   // Photos from subfolders (add as many as you like)
