@@ -123,7 +123,7 @@ document.getElementById("lockButton").addEventListener("click", () => {
 });
 
 // ------------------------------------------------------------
-// Photo lightbox & Navigation
+// Photo lightbox & Navigation (Initialized AFTER cards are built)
 // ------------------------------------------------------------
 const cards = Array.from(document.querySelectorAll(".photo-card"));
 const lightbox = document.getElementById("lightbox");
