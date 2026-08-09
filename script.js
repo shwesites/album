@@ -7,21 +7,22 @@ const LOCKOUT_DURATION = 24 * 60 * 60 * 1000; // 24 hours
 // List your photos from any folder or subfolder here manually
 const imageList = [
   // Photos from the main photos folder
-  { src: "photos/1.jpg", caption: "Main Folder Photo 1" },
-  { src: "photos/2.jpg", caption: "Main Folder Photo 2" },
-  { src: "photos/3.jpg", caption: "Main Folder Photo 2" },
-  { src: "photos/4.jpg", caption: "Main Folder Photo 2" },
-  { src: "photos/5.jpg", caption: "Main Folder Photo 2" },
-  { src: "photos/6.jpg", caption: "Main Folder Photo 2" },
-  { src: "photos/7.jpg", caption: "Main Folder Photo 2" },
-  { src: "photos/8.jpg", caption: "Main Folder Photo 2" },
-  { src: "photos/9.jpg", caption: "Main Folder Photo 2" },
-  { src: "photos/10.jpg", caption: "Main Folder Photo 2" },
+  { src: "photos/1.jpg", caption: "Photo 1" },
+  { src: "photos/2.jpg", caption: "Photo 2" },
+  { src: "photos/3.jpg", caption: "Photo 3" },
+  { src: "photos/4.jpg", caption: "Photo 4" },
+  { src: "photos/5.jpg", caption: "Photo 5" },
+  { src: "photos/6.jpg", caption: "Photo 6" },
+  { src: "photos/7.jpg", caption: "Photo 7" },
+  { src: "photos/8.jpg", caption: "Photo 8" },
+  { src: "photos/9.jpg", caption: "Photo 9" },
+  { src: "photos/10.jpg", caption: "Photo 10" },
   
   
   // Photos from subfolders (add as many as you like)
-  { src: "photos/international/ramona/1.jpg", caption: "Ramona Trip 1" },
-  { src: "photos/international/ramona/2.jpg", caption: "Ramona Trip 2" },
+  { src: "photos/international/ramona/1.jpg", caption: "Ramona 1" },
+  { src: "photos/international/ramona/2.jpg", caption: "Ramona 2" },
+  { src: "photos/international/ramona/3.jpg", caption: "Ramona 3" },
 ];
 
 // ------------------------------------------------------------
