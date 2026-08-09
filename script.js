@@ -9,6 +9,15 @@ const imageList = [
   // Photos from the main photos folder
   { src: "photos/1.jpg", caption: "Main Folder Photo 1" },
   { src: "photos/2.jpg", caption: "Main Folder Photo 2" },
+  { src: "photos/3.jpg", caption: "Main Folder Photo 2" },
+  { src: "photos/4.jpg", caption: "Main Folder Photo 2" },
+  { src: "photos/5.jpg", caption: "Main Folder Photo 2" },
+  { src: "photos/6.jpg", caption: "Main Folder Photo 2" },
+  { src: "photos/7.jpg", caption: "Main Folder Photo 2" },
+  { src: "photos/8.jpg", caption: "Main Folder Photo 2" },
+  { src: "photos/9.jpg", caption: "Main Folder Photo 2" },
+  { src: "photos/10.jpg", caption: "Main Folder Photo 2" }
+  
   
   // Photos from subfolders (add as many as you like)
   { src: "photos/international/ramona/1.jpg", caption: "Ramona Trip 1" },
