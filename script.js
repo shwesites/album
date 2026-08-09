@@ -1,12 +1,12 @@
 // ============================================================
 // CONFIGURATION & AUTOMATED IMAGE GENERATION
 // ============================================================
-const CORRECT_PIN = "123";
+const CORRECT_PIN = "567";
 const LOCKOUT_DURATION = 24 * 60 * 60 * 1000; // 24 hours
 
 // Automatically generate numbers from 1 to 50
 const imageList = [];
-for (let i = 1; i <= 50; i++) {
+for (let i = 1; i <= 10; i++) {
   imageList.push({
     src: `photos/${i}.jpg`,
     caption: `Photo ${i}`
