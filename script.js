@@ -1,17 +1,22 @@
 // ============================================================
-// CONFIGURATION & AUTOMATED IMAGE GENERATION
+// CONFIGURATION & MIXED FOLDER IMAGE LIST
 // ============================================================
 const CORRECT_PIN = "567";
 const LOCKOUT_DURATION = 24 * 60 * 60 * 1000; // 24 hours
 
-// Automatically generate numbers from 1 to 50
-const imageList = [];
-for (let i = 1; i <= 10; i++) {
-  imageList.push({
-    src: `photos/${i}.jpg`,
-    caption: `Photo ${i}`
-  });
-}
+// List your photos from any folder or subfolder here manually
+const imageList = [
+  // Photos from the main photos folder
+  { src: "photos/1.jpg", caption: "Main Folder Photo 1" },
+  { src: "photos/2.jpg", caption: "Main Folder Photo 2" },
+  
+  // Photos from subfolders (add as many as you like)
+  { src: "photos/international/ramona/1.jpg", caption: "Ramona Trip 1" },
+  { src: "photos/international/ramona/2.jpg", caption: "Ramona Trip 2" },
+  
+  // Example of another subfolder if you have one:
+  // { src: "photos/vacation/beach.jpg", caption: "Beach Day" }
+];
 
 // ------------------------------------------------------------
 // Dynamic Gallery Builder
