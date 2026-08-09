@@ -13,9 +13,6 @@ const imageList = [
   // Photos from subfolders (add as many as you like)
   { src: "photos/international/ramona/1.jpg", caption: "Ramona Trip 1" },
   { src: "photos/international/ramona/2.jpg", caption: "Ramona Trip 2" },
-  
-  // Example of another subfolder if you have one:
-  // { src: "photos/vacation/beach.jpg", caption: "Beach Day" }
 ];
 
 // ------------------------------------------------------------
