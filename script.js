@@ -23,6 +23,13 @@ const imageList = [
   { src: "photos/international/ramona/1.jpg", caption: "Ramona 1" },
   { src: "photos/international/ramona/2.jpg", caption: "Ramona 2" },
   { src: "photos/international/ramona/3.jpg", caption: "Ramona 3" },
+  { src: "photos/international/ramona/4.jpg", caption: "Ramona 4" },
+  { src: "photos/international/ramona/5.jpg", caption: "Ramona 5" },
+  { src: "photos/international/ramona/6.jpg", caption: "Ramona 6" },
+  { src: "photos/international/ramona/7.jpg", caption: "Ramona 7" },
+  { src: "photos/international/ramona/8.jpg", caption: "Ramona 8" },
+  { src: "photos/international/ramona/9.jpg", caption: "Ramona 9" },
+  { src: "photos/international/ramona/10.jpg", caption: "Ramona 10" },
 ];
 
 // ------------------------------------------------------------
