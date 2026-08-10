@@ -33,15 +33,26 @@ const foldersData = {
 };
 
 // ------------------------------------------------------------
-// PIN logic with 24-Hour Expiration & Two-Attempt Override
+// DOM Elements & Globals (Declared first so functions can use them)
 // ------------------------------------------------------------
-let enteredPin = "";
-let attemptCount = parseInt(localStorage.getItem("album_attempts") || "0", 10);
-
+const gallerySection = document.getElementById("gallery");
 const lockScreen = document.getElementById("lockScreen");
 const album = document.getElementById("album");
 const pinDots = document.querySelectorAll("#pinDots span");
 const pinMessage = document.getElementById("pinMessage");
+const lightbox = document.getElementById("lightbox");
+const lightboxImage = document.getElementById("lightboxImage");
+const lightboxCaption = document.getElementById("lightboxCaption");
+
+let currentPhotos = [];
+let cards = [];
+let currentPhotoIndex = 0;
+
+// ------------------------------------------------------------
+// PIN logic with 24-Hour Expiration & Two-Attempt Override
+// ------------------------------------------------------------
+let enteredPin = "";
+let attemptCount = parseInt(localStorage.getItem("album_attempts") || "0", 10);
 
 const unlockTime = parseInt(localStorage.getItem("album_unlock_time") || "0", 10);
 const currentTime = new Date().getTime();
@@ -104,11 +115,24 @@ document.querySelectorAll(".keypad button[data-key]").forEach(button => {
 document.getElementById("backspace").addEventListener("click", deleteDigit);
 
 document.addEventListener("keydown", event => {
-  if (lockScreen.classList.contains("hidden")) return;
-  if (event.key >= "0" && event.key <= "9") {
-    enterDigit(event.key);
-  } else if (event.key === "Backspace") {
-    deleteDigit();
+  if (!lockScreen.classList.contains("hidden")) {
+    if (event.key >= "0" && event.key <= "9") {
+      enterDigit(event.key);
+    } else if (event.key === "Backspace") {
+      deleteDigit();
+    }
+    return;
+  }
+
+  if (lightbox.classList.contains("hidden")) return;
+  if (event.key === "Escape") closeLightbox();
+  if (event.key === "ArrowLeft") {
+    currentPhotoIndex = (currentPhotoIndex - 1 + currentPhotos.length) % currentPhotos.length;
+    updateLightboxContent();
+  }
+  if (event.key === "ArrowRight") {
+    currentPhotoIndex = (currentPhotoIndex + 1) % currentPhotos.length;
+    updateLightboxContent();
   }
 });
 
@@ -126,10 +150,6 @@ document.getElementById("lockButton").addEventListener("click", () => {
 // ------------------------------------------------------------
 // Folder & Gallery Navigation
 // ------------------------------------------------------------
-const gallerySection = document.getElementById("gallery");
-let currentPhotos = [];
-let cards = [];
-
 function initAlbumView() {
   gallerySection.innerHTML = "";
   gallerySection.className = "gallery folder-view";
@@ -158,7 +178,6 @@ function openFolder(folderName) {
   gallerySection.innerHTML = "";
   gallerySection.className = "gallery photo-grid";
 
-  // Add a "Back to Folders" button header inside the gallery
   const backBtnContainer = document.createElement("div");
   backBtnContainer.className = "back-container";
   backBtnContainer.innerHTML = `<button id="backToFolders" class="back-btn">← Back to Folders</button><h2>${folderName}</h2>`;
@@ -187,11 +206,6 @@ function openFolder(folderName) {
 // ------------------------------------------------------------
 // Photo Lightbox & Navigation
 // ------------------------------------------------------------
-const lightbox = document.getElementById("lightbox");
-const lightboxImage = document.getElementById("lightboxImage");
-const lightboxCaption = document.getElementById("lightboxCaption");
-let currentPhotoIndex = 0;
-
 function showLightbox(index) {
   currentPhotoIndex = index;
   updateLightboxContent();
@@ -221,19 +235,6 @@ document.getElementById("nextPhoto").addEventListener("click", () => {
 
 lightbox.addEventListener("click", event => {
   if (event.target === lightbox) closeLightbox();
-});
-
-document.addEventListener("keydown", event => {
-  if (lightbox.classList.contains("hidden")) return;
-  if (event.key === "Escape") closeLightbox();
-  if (event.key === "ArrowLeft") {
-    currentPhotoIndex = (currentPhotoIndex - 1 + currentPhotos.length) % currentPhotos.length;
-    updateLightboxContent();
-  }
-  if (event.key === "ArrowRight") {
-    currentPhotoIndex = (currentPhotoIndex + 1 + currentPhotos.length) % currentPhotos.length;
-    updateLightboxContent();
-  }
 });
 
 document.getElementById("year").textContent = new Date().getFullYear();
