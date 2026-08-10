@@ -61,7 +61,7 @@ let cards = [];
 let currentPhotoIndex = 0;
 
 // ------------------------------------------------------------
-// Folder & Gallery Navigation Functions (Defined first)
+// Folder & Gallery Navigation Functions
 // ------------------------------------------------------------
 function initAlbumView() {
   if (!gallerySection) return;
@@ -129,7 +129,7 @@ const currentTime = new Date().getTime();
 if (localStorage.getItem("album_unlocked") === "true" && (currentTime - unlockTime < LOCKOUT_DURATION)) {
   lockScreen.classList.add("hidden");
   album.classList.remove("hidden");
-  setTimeout(initAlbumView, 50); // Ensures DOM is fully parsed before drawing folders
+  setTimeout(initAlbumView, 50);
 } else {
   localStorage.removeItem("album_unlocked");
   localStorage.removeItem("album_unlock_time");
