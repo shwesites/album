@@ -29,6 +29,18 @@ const foldersData = {
     { src: "photos/international/ramona/8.jpg", caption: "Ramona 8" },
     { src: "photos/international/ramona/9.jpg", caption: "Ramona 9" },
     { src: "photos/international/ramona/10.jpg", caption: "Ramona 10" }
+  ],
+  "Liana Luck": [
+    { src: "photos/international/liana-luck/1.jpg", caption: "liana luck 1" },
+    { src: "photos/international/liana-luck/2.jpg", caption: "liana luck 2" },
+    { src: "photos/international/liana-luck/3.jpg", caption: "liana luck 3" },
+    { src: "photos/international/liana-luck/4.jpg", caption: "liana luck 4" },
+    { src: "photos/international/liana-luck/5.jpg", caption: "liana luck 5" },
+    { src: "photos/international/liana-luck/6.jpg", caption: "liana luck 6" },
+    { src: "photos/international/liana-luck/7.jpg", caption: "liana luck 7" },
+    { src: "photos/international/liana-luck/8.jpg", caption: "liana luck 8" },
+    { src: "photos/international/liana-luck/9.jpg", caption: "liana luck 9" },
+    { src: "photos/international/liana-luck/10.jpg", caption: "liana luck 10" }
   ]
 };
 
