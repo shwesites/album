@@ -175,9 +175,104 @@ button {
 .gallery {
   max-width: 1200px;
   margin: auto;
+}
+
+/* FOLDER & ALBUM NAVIGATION STYLES */
+.folder-view {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 24px;
+}
+
+.folder-card {
+  background: var(--card);
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 8px 30px rgba(0,0,0,.08);
+  cursor: pointer;
+  transition: transform .2s, box-shadow .2s;
+  padding: 16px;
+  text-align: center;
+}
+
+.folder-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 38px rgba(0,0,0,.14);
+}
+
+.folder-thumbnail {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  border-radius: 14px;
+  overflow: hidden;
+  background: #e5e7eb;
+}
+
+.folder-thumbnail img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.folder-badge {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(4px);
+  color: white;
+  padding: 6px 10px;
+  border-radius: 10px;
+  font-size: 14px;
+}
+
+.folder-card h3 {
+  margin: 14px 0 4px;
+  font-size: 18px;
+}
+
+.folder-card p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.back-container {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.back-btn {
+  border: 0;
+  padding: 10px 18px;
+  border-radius: 999px;
+  background: #e5e7eb;
+  color: var(--text);
+  font-weight: 600;
+  cursor: pointer;
+  transition: background .15s;
+}
+
+.back-btn:hover {
+  background: #d1d5db;
+}
+
+.photo-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  width: 100%;
+}
+
+.grid-container {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 18px;
+  width: 100%;
+  grid-column: 1 / -1;
 }
 
 .photo-card {
@@ -278,7 +373,7 @@ footer {
 }
 
 @media (max-width: 800px) {
-  .gallery {
+  .grid-container {
     grid-template-columns: repeat(2, 1fr);
   }
 
@@ -289,7 +384,7 @@ footer {
 }
 
 @media (max-width: 520px) {
-  .gallery {
+  .grid-container {
     grid-template-columns: 1fr;
   }
 
