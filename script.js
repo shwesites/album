@@ -41,6 +41,18 @@ const foldersData = {
     { src: "photos/international/liana-luck/8.jpg", caption: "liana luck 8" },
     { src: "photos/international/liana-luck/9.jpg", caption: "liana luck 9" },
     { src: "photos/international/liana-luck/10.jpg", caption: "liana luck 10" }
+  ],
+  "Couple One": [
+    { src: "photos/international/couple1/1.jpg", caption: "Couple One 1" },
+    { src: "photos/international/couple1/2.jpg", caption: "Couple One 2" },
+    { src: "photos/international/couple1/3.jpg", caption: "Couple One 3" },
+    { src: "photos/international/couple1/4.jpg", caption: "Couple One 4" },
+    { src: "photos/international/couple1/5.jpg", caption: "Couple One 5" },
+    { src: "photos/international/couple1/6.jpg", caption: "Couple One 6" },
+    { src: "photos/international/couple1/7.jpg", caption: "Couple One 7" },
+    { src: "photos/international/couple1/8.jpg", caption: "Couple One 8" },
+    { src: "photos/international/couple1/9.jpg", caption: "Couple One 9" },
+    { src: "photos/international/couple1/10.jpg", caption: "Couple One 10" }
   ]
 };
 
