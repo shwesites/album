@@ -53,6 +53,18 @@ const foldersData = {
     { src: "photos/international/couple1/8.jpg", caption: "Couple One 8" },
     { src: "photos/international/couple1/9.jpg", caption: "Couple One 9" },
     { src: "photos/international/couple1/10.jpg", caption: "Couple One 10" }
+  ],
+  "Zuzanna": [
+    { src: "photos/international/zuzana/1.jpg", caption: "Zuzanna 1" },
+    { src: "photos/international/zuzana/2.jpg", caption: "Zuzanna 2" },
+    { src: "photos/international/zuzana/3.jpg", caption: "Zuzanna 3" },
+    { src: "photos/international/zuzana/4.jpg", caption: "Zuzanna 4" },
+    { src: "photos/international/zuzana/5.jpg", caption: "Zuzanna 5" },
+    { src: "photos/international/zuzana/6.jpg", caption: "Zuzanna 6" },
+    { src: "photos/international/zuzana/7.jpg", caption: "Zuzanna 7" },
+    { src: "photos/international/zuzana/8.jpg", caption: "Zuzanna 8" },
+    { src: "photos/international/zuzana/9.jpg", caption: "Zuzanna 9" },
+    { src: "photos/international/zuzana/10.jpg", caption: "Zuzanna 10" }
   ]
 };
 
