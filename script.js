@@ -6,17 +6,17 @@ const LOCKOUT_DURATION = 24 * 60 * 60 * 1000; // 24 hours
 
 // Organize your photos with folder/album names
 const foldersData = {
-  "Main Photos": [
-    { src: "photos/1.jpg", caption: "Photo 1" },
-    { src: "photos/2.jpg", caption: "Photo 2" },
-    { src: "photos/3.jpg", caption: "Photo 3" },
-    { src: "photos/4.jpg", caption: "Photo 4" },
-    { src: "photos/5.jpg", caption: "Photo 5" },
-    { src: "photos/6.jpg", caption: "Photo 6" },
-    { src: "photos/7.jpg", caption: "Photo 7" },
-    { src: "photos/8.jpg", caption: "Photo 8" },
-    { src: "photos/9.jpg", caption: "Photo 9" },
-    { src: "photos/10.jpg", caption: "Photo 10" }
+  "Me": [
+    { src: "photos/1.jpg", caption: "me 1" },
+    { src: "photos/2.jpg", caption: "me 2" },
+    { src: "photos/3.jpg", caption: "me 3" },
+    { src: "photos/4.jpg", caption: "me 4" },
+    { src: "photos/5.jpg", caption: "me 5" },
+    { src: "photos/6.jpg", caption: "me 6" },
+    { src: "photos/7.jpg", caption: "me 7" },
+    { src: "photos/8.jpg", caption: "me 8" },
+    { src: "photos/9.jpg", caption: "me 9" },
+    { src: "photos/10.jpg", caption: "me 10" }
   ],
   "Ramona": [
     { src: "photos/international/ramona/1.jpg", caption: "Ramona 1" },
