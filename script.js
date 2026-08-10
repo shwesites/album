@@ -65,6 +65,18 @@ const foldersData = {
     { src: "photos/international/zuzanna/8.jpg", caption: "Zuzanna 8" },
     { src: "photos/international/zuzanna/9.jpg", caption: "Zuzanna 9" },
     { src: "photos/international/zuzanna/10.jpg", caption: "Zuzanna 10" }
+  ],
+  "Kali": [
+    { src: "photos/international/kali/1.jpg", caption: "Kali 1" },
+    { src: "photos/international/kali/2.jpg", caption: "Kali 2" },
+    { src: "photos/international/kali/3.jpg", caption: "Kali 3" },
+    { src: "photos/international/kali/4.jpg", caption: "Kali 4" },
+    { src: "photos/international/kali/5.jpg", caption: "Kali 5" },
+    { src: "photos/international/kali/6.jpg", caption: "Kali 6" },
+    { src: "photos/international/kali/7.jpg", caption: "Kali 7" },
+    { src: "photos/international/kali/8.jpg", caption: "Kali 8" },
+    { src: "photos/international/kali/9.jpg", caption: "Kali 9" },
+    { src: "photos/international/kali/10.jpg", caption: "Kali 10" }
   ]
 };
 
