@@ -33,7 +33,7 @@ const foldersData = {
 };
 
 // ------------------------------------------------------------
-// DOM Elements & Globals (Declared first so functions can use them)
+// DOM Elements & Globals
 // ------------------------------------------------------------
 const gallerySection = document.getElementById("gallery");
 const lockScreen = document.getElementById("lockScreen");
@@ -49,6 +49,63 @@ let cards = [];
 let currentPhotoIndex = 0;
 
 // ------------------------------------------------------------
+// Folder & Gallery Navigation Functions (Defined first)
+// ------------------------------------------------------------
+function initAlbumView() {
+  if (!gallerySection) return;
+  gallerySection.innerHTML = "";
+  gallerySection.className = "gallery folder-view";
+
+  Object.keys(foldersData).forEach(folderName => {
+    const previewImg = foldersData[folderName][0] ? foldersData[folderName][0].src : "";
+    
+    const folderCard = document.createElement("div");
+    folderCard.className = "folder-card";
+    folderCard.innerHTML = `
+      <div class="folder-thumbnail">
+        <img src="${previewImg}" alt="${folderName}" loading="lazy">
+        <div class="folder-badge">📁</div>
+      </div>
+      <h3>${folderName}</h3>
+      <p>${foldersData[folderName].length} photos</p>
+    `;
+
+    folderCard.addEventListener("click", () => openFolder(folderName));
+    gallerySection.appendChild(folderCard);
+  });
+}
+
+function openFolder(folderName) {
+  currentPhotos = foldersData[folderName];
+  gallerySection.innerHTML = "";
+  gallerySection.className = "gallery photo-grid";
+
+  const backBtnContainer = document.createElement("div");
+  backBtnContainer.className = "back-container";
+  backBtnContainer.innerHTML = `<button id="backToFolders" class="back-btn">← Back to Folders</button><h2>${folderName}</h2>`;
+  gallerySection.appendChild(backBtnContainer);
+
+  document.getElementById("backToFolders").addEventListener("click", initAlbumView);
+
+  const gridContainer = document.createElement("div");
+  gridContainer.className = "grid-container";
+
+  currentPhotos.forEach((item, index) => {
+    const figure = document.createElement("figure");
+    figure.className = "photo-card";
+    figure.innerHTML = `
+      <img src="${item.src}" alt="${item.caption}" loading="lazy">
+      <figcaption>${item.caption}</figcaption>
+    `;
+    figure.addEventListener("click", () => showLightbox(index));
+    gridContainer.appendChild(figure);
+  });
+
+  gallerySection.appendChild(gridContainer);
+  cards = Array.from(gridContainer.querySelectorAll(".photo-card"));
+}
+
+// ------------------------------------------------------------
 // PIN logic with 24-Hour Expiration & Two-Attempt Override
 // ------------------------------------------------------------
 let enteredPin = "";
@@ -60,7 +117,7 @@ const currentTime = new Date().getTime();
 if (localStorage.getItem("album_unlocked") === "true" && (currentTime - unlockTime < LOCKOUT_DURATION)) {
   lockScreen.classList.add("hidden");
   album.classList.remove("hidden");
-  initAlbumView();
+  setTimeout(initAlbumView, 50); // Ensures DOM is fully parsed before drawing folders
 } else {
   localStorage.removeItem("album_unlocked");
   localStorage.removeItem("album_unlock_time");
@@ -146,62 +203,6 @@ document.getElementById("lockButton").addEventListener("click", () => {
   enteredPin = "";
   updateDots();
 });
-
-// ------------------------------------------------------------
-// Folder & Gallery Navigation
-// ------------------------------------------------------------
-function initAlbumView() {
-  gallerySection.innerHTML = "";
-  gallerySection.className = "gallery folder-view";
-
-  Object.keys(foldersData).forEach(folderName => {
-    const previewImg = foldersData[folderName][0] ? foldersData[folderName][0].src : "";
-    
-    const folderCard = document.createElement("div");
-    folderCard.className = "folder-card";
-    folderCard.innerHTML = `
-      <div class="folder-thumbnail">
-        <img src="${previewImg}" alt="${folderName}" loading="lazy">
-        <div class="folder-badge">📁</div>
-      </div>
-      <h3>${folderName}</h3>
-      <p>${foldersData[folderName].length} photos</p>
-    `;
-
-    folderCard.addEventListener("click", () => openFolder(folderName));
-    gallerySection.appendChild(folderCard);
-  });
-}
-
-function openFolder(folderName) {
-  currentPhotos = foldersData[folderName];
-  gallerySection.innerHTML = "";
-  gallerySection.className = "gallery photo-grid";
-
-  const backBtnContainer = document.createElement("div");
-  backBtnContainer.className = "back-container";
-  backBtnContainer.innerHTML = `<button id="backToFolders" class="back-btn">← Back to Folders</button><h2>${folderName}</h2>`;
-  gallerySection.appendChild(backBtnContainer);
-
-  document.getElementById("backToFolders").addEventListener("click", initAlbumView);
-
-  const gridContainer = document.createElement("div");
-  gridContainer.className = "grid-container";
-
-  currentPhotos.forEach((item, index) => {
-    const figure = document.createElement("figure");
-    figure.className = "photo-card";
-    figure.innerHTML = `
-      <img src="${item.src}" alt="${item.caption}" loading="lazy">
-      <figcaption>${item.caption}</figcaption>
-    `;
-    figure.addEventListener("click", () => showLightbox(index));
-    gridContainer.appendChild(figure);
-  });
-
-  gallerySection.appendChild(gridContainer);
-  cards = Array.from(gridContainer.querySelectorAll(".photo-card"));
-}
 
 // ------------------------------------------------------------
 // Photo Lightbox & Navigation
